@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Timer</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" href="favicon.ico">
+</head>
+<body>
+    <div class="container">
+        <h1>TIMER</h1>
+        <div class="timer-display-wrapper">
+            <div id="timer-display" contenteditable="true">00:00:00</div>
+        </div>
+        <div class="controls">
+            <button id="start-btn">Start</button>
+            <button id="pause-btn">Pause</button>
+            <button id="resume-btn">Resume</button>
+            <button id="stop-btn">Stop</button>
+        </div>
+        <br>
+        <div class="audio-input-wrapper">
+            <h2>Notification Audio</h2>
+            <label for="audio-file" class="button">
+                <i class="fas fa-music"></i>
+                <span>Choose your favorite sound</span>
+            </label>
+            <input type="file" id="audio-file" accept="audio/*" style="display: none;" />
+            <style>
+                .audio-input-wrapper {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    margin-top: 2rem;
+                    background-color: #2d3748;
+                    border-radius: 0.5rem;
+                    padding: 1rem;
+                    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+                }
+
+                .audio-input-wrapper h2 {
+                    font-size: 1.2rem;
+                    font-weight: bold;
+                    margin-bottom: 0.5rem;
+                    color: #fff;
+                }
+
+                .audio-input-wrapper label {
+                    background-color: #1a202c;
+                    color: #fff;
+                    border-radius: 0.25rem;
+                    padding: 0.5rem 1rem;
+                    font-size: 1.0rem;
+                    cursor: pointer;
+                    display: flex;
+                    align-items: center;
+                    transition: background-color 0.2s ease;
+                }
+
+                .audio-input-wrapper label:hover {
+                    background-color: #3f5882;
+                }
+
+                .audio-input-wrapper label i {
+                    font-size: 2rem;
+                    margin-right: 0.5rem;
+                }
+            </style>
+        </div>
+    </div>
+    <script src="script.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('service-worker.js')
+                    .then((registration) => {
+                        console.log('Service Worker registered with scope:', registration.scope);
+                    })
+                    .catch((error) => {
+                        console.error('Service Worker registration failed:', error);
+                    });
+            });
+        }
+    </script>    
+</body>
+</html>
+
